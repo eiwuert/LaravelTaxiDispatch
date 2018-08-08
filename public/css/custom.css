@@ -1,0 +1,75 @@
+ dashi.active {
+    color: #008000;
+    font-size: 18px;
+}
+i.inactive {
+    color: #FF0000;
+    font-size: 18px;
+}
+.ajax_status i.success {
+    padding-right: 24px;
+    color: #0ad20a;
+    font-size: 53px;
+}
+.bootbox-body {
+    text-align: center;
+    font-size: 21px;
+}
+
+.f_filter.container-fluid {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.dashboard-table-filter td {
+    padding: 5px !important;
+}
+
+.dashboard-f-filter{
+	position: absolute;
+    top: -1px;
+    width: 100%;
+}
+
+.dashboard-f-filter form {
+    position: absolute;
+    top: 9px;
+    left: 25px;
+}
+
+/*** DASHBOARD CHART BRANDING NAME HIDE**********/
+.amcharts-chart-div a {
+    display: none !important;
+}
+a {
+    cursor: pointer !important;
+}
+
+/******REPORT DESIGN **********/
+.tbl_grid_report{
+    max-height: 600px !important;
+    overflow-y: scroll;
+    border: 3px solid #828282;
+	margin-bottom:20px;
+    position: relative;
+    /*z-index: 10;*/
+}
+
+/*********REPORT **************/
+
+table.filter_report th {
+    background-color: #293c4e;
+    padding: 12px;
+    color: #fff;
+}
+
+table.filter_report td {
+    padding: 12px;
+     border-top: 1px solid rgba(142, 142, 142, 0.08);
+}
+
+.row.tbl_grid_report
+    display: inline-flex;
+    overflow-x: scroll;
+    width: 100%;
+    }

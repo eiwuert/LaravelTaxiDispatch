@@ -1,0 +1,49 @@
+@page { margin: 10px 10px; } 
+.logo_header_row {
+    background-color: #f55906;
+    color: #ffffff;
+	font-size:28px;
+}
+.p_logo_header_row {
+   
+    padding: 1px 1pt;
+    border-bottom: thin solid rgb(191, 191, 191);
+    border-left: none rgb(245, 89, 6);
+	background-color: #f55906;
+    color: #ffffff;
+}
+.p_table{
+	width:100%;
+	font-size: 17px;
+	font-size: 11px;
+	background-color: #f65a07;
+	color:#ffffff;
+}
+.filter_report{
+	width:100%;
+	
+}
+.filter_report td{
+	font-family: arial;
+    font-weight: normal;
+    font-size: 13px;
+    color: rgb(83, 83, 83);
+    padding: 8px 5px;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    background-color: rgb(255, 255, 255);
+    text-indent: 5px;
+}
+
+table.p_table h2 {
+    font-size: 33px;
+    position: relative;
+    top: 12px;
+    right: 0px;
+}
+
+table.filter_report th {
+    background: #293c4e;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 12px;
+}

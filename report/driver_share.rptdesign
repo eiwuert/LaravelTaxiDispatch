@@ -1,0 +1,1046 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.2.v201410272105 Build &lt;4.4.2.v20150217-1805></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="Vehicle Number" id="570">
+            <text-property name="promptText">Vehicle Number</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">false</property>
+            <property name="dataSetName">taxi_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["id"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["car_no"]</expression>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">ALL</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="Driver Name" id="571">
+            <text-property name="promptText">Driver Name</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">false</property>
+            <property name="dataSetName">driver_list</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["id"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["driver_id"]</expression>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">ALL</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="From Date" id="129">
+            <text-property name="helpText">select from date (dd-mm-yyyy)</text-property>
+            <text-property name="promptText">Select From Date (dd-mm-yyyy)</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">date</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Custom</property>
+                <property name="pattern">dd-MM-yyyy</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="To Date" id="131">
+            <text-property name="helpText">Select To Date (dd-mm-yyyy)</text-property>
+            <text-property name="promptText">Select To Date (dd-mm-yyyy)</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">date</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Custom</property>
+                <property name="pattern">dd-MM-yyyy</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="526">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+              <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://ec2-52-35-102-74.us-west-2.compute.amazonaws.com/goapp</property>
+            <property name="odaUser">remoteu</property>
+	        <encrypted-property name="odaPassword" encryptionID="base64">YWRtaW4=</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="drivers_share_report" id="542">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">date_of_ride</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">date_of_ride</text-property>
+                    <text-property name="heading">date_of_ride</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">driver_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">driver_name</text-property>
+                    <text-property name="heading">driver_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">car_no</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">car_no</text-property>
+                    <text-property name="heading">car_no</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">driver_share</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">driver_share</text-property>
+                    <text-property name="heading">driver_share</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">franchise_share</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">franchise_share</text-property>
+                    <text-property name="heading">franchise_share</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">company_share</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">company_share</text-property>
+                    <text-property name="heading">company_share</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">date_of_ride</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">driver_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">car_no</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">driver_share</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">franchise_share</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">company_share</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.text);
+importPackage(Packages.java.io); 
+
+var fdate =params["From Date"].value;
+var tdate =params["To Date"].value;
+
+var sdf = new SimpleDateFormat("yyyy-MM-dd", reportContext.getLocale());
+var frdate = sdf.format( fdate );
+var todate = sdf.format( tdate );
+this.queryText = this.queryText.replace("FR_D", frdate);
+this.queryText = this.queryText.replace("TO_D", todate);
+
+
+var vehicleNum = params["Vehicle Number"].value;
+if (vehicleNum != 'ALL') {
+	this.queryText = this.queryText + ' AND cl.id = ' + vehicleNum.replace(',','');
+}
+
+var driverName = params["Driver Name"].value;
+if (driverName != 'ALL')  {
+	this.queryText = this.queryText + ' AND dr.id = ' + driverName.replace(',','') ;
+}
+]]></method>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">date_of_ride</property>
+                    <property name="nativeName">date_of_ride</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">driver_name</property>
+                    <property name="nativeName">driver_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">car_no</property>
+                    <property name="nativeName">car_no</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">driver_share</property>
+                    <property name="nativeName">driver_share</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">franchise_share</property>
+                    <property name="nativeName">franchise_share</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">company_share</property>
+                    <property name="nativeName">company_share</property>
+                    <property name="dataType">float</property>
+                    <property name="nativeDataType">8</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT r.date_of_ride,CONCAT(dr.firstname,'-',dr.driver_id) as driver_name,CONCAT(ct.car_type,' - ',IF(ct.car_board =1,'W','Y') ) as car_no,
+ROUND((r.final_amount*ct.attacheddriver_share/100),2) as driver_share,
+ROUND((r.final_amount*ct.franchise_share/100),2) as franchise_share,
+ROUND((r.final_amount*ct.companydriver_share/100),2) as company_share
+FROM  wy_ride r 
+JOIN wy_ridedetails rd ON r.id=rd.ride_id 
+LEFT JOIN wy_driver dr ON rd.driver_id=dr.id 
+LEFT JOIN wy_assign_taxi at ON dr.id =at.driver_id
+LEFT JOIN wy_carlist cl ON at.car_num =cl.id
+LEFT JOIN wy_cartype ct ON cl.car_type =ct.id where rd.ride_status=4 AND r.date_of_ride BETWEEN 'FR_D' AND 'TO_D'
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>30</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>name</design:label>
+            <design:formattingHints>
+              <design:displaySize>30</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>state_id</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>state_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>state_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="taxi_list" id="566">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">car_no</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">car_no</text-property>
+                    <text-property name="heading">car_no</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">car_no</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">car_no</property>
+                    <property name="nativeName">car_no</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select cl.id,concat(cl.car_no,' - ',ct.car_type,' (',CASE WHEN ct.car_board= 1 THEN 'W' ELSE 'Y' END,')') AS car_no
+from wy_carlist cl LEFT JOIN wy_cartype ct ON ct.id=cl.car_type]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>car_no</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>car_no</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>car_no</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="driver_list" id="567">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">driver_id</property>
+                    <text-property name="displayName">driver_id</text-property>
+                    <text-property name="heading">driver_id</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">driver_id</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">driver_id</property>
+                    <property name="nativeName">driver_id</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select wy_driver.id,concat(wy_driver.driver_id," - ",wy_driver.firstname," ",wy_driver.lastname) as driver_id
+from wy_driver]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>driver_id</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>driver_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>driver_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Passenger List" id="568">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                    <text-property name="displayName">name</text-property>
+                    <text-property name="heading">name</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select wy_customer.id,wy_customer.name
+from wy_customer]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>name</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="label_data_style" id="367">
+            <property name="fontFamily">"Arial"</property>
+            <property name="fontSize">14px</property>
+            <property name="color">#535353</property>
+            <property name="width">150px</property>
+        </style>
+        <style name="label_grid" id="420">
+            <property name="marginTop">20px</property>
+            <property name="paddingLeft">1px</property>
+            <property name="width">800px</property>
+        </style>
+        <style name="label_title_style" id="366">
+            <property name="fontFamily">"Arial"</property>
+            <property name="fontSize">14px</property>
+            <property name="fontWeight">bold</property>
+            <property name="fontStyle">normal</property>
+            <property name="color">#535353</property>
+            <property name="paddingLeft">5px</property>
+            <property name="paddingBottom">10px</property>
+            <property name="paddingRight">5px</property>
+            <property name="width">111px</property>
+        </style>
+        <style name="logoimg" id="506">
+            <property name="paddingTop">10pt</property>
+            <property name="paddingLeft">5pt</property>
+            <property name="paddingBottom">5pt</property>
+            <property name="paddingRight">5pt</property>
+        </style>
+        <style name="report" id="4">
+            <property name="fontFamily">"sans-Arial"</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="table_style" id="452">
+            <property name="paddingTop">25px</property>
+            <property name="paddingLeft">25px</property>
+            <property name="paddingBottom">25px</property>
+            <property name="paddingRight">25px</property>
+        </style>
+        <style name="table_td" id="414">
+            <property name="backgroundColor">#FFFFFF</property>
+            <property name="fontFamily">"arial"</property>
+            <property name="fontSize">13px</property>
+            <property name="fontWeight">normal</property>
+            <property name="color">#535353</property>
+            <property name="borderBottomColor">#E0E0E0</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1px</property>
+            <property name="paddingTop">8px</property>
+            <property name="paddingLeft">5px</property>
+            <property name="paddingBottom">8px</property>
+            <property name="paddingRight">5px</property>
+            <property name="textAlign">left</property>
+            <property name="textIndent">5px</property>
+        </style>
+        <style name="table_th" id="411">
+            <property name="backgroundColor">#EDEDED</property>
+            <property name="fontFamily">"arial"</property>
+            <property name="fontSize">14px</property>
+            <property name="fontWeight">bold</property>
+            <property name="color">#535353</property>
+            <property name="borderBottomColor">#E0E0E0</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1px</property>
+            <property name="borderTopColor">#E0E0E0</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1px</property>
+            <property name="paddingTop">8px</property>
+            <property name="paddingLeft">5px</property>
+            <property name="paddingBottom">8px</property>
+            <property name="paddingRight">5px</property>
+            <property name="textAlign">left</property>
+            <property name="textTransform">capitalize</property>
+        </style>
+        <style name="logo_grid" id="426">
+            <property name="backgroundColor">#F55906</property>
+            <property name="color">#FFFFFF</property>
+            <property name="borderBottomColor">#BFBFBF</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="borderLeftColor">#F55906</property>
+            <property name="borderLeftStyle">none</property>
+            <property name="paddingTop">1px</property>
+            <property name="paddingLeft">1pt</property>
+            <property name="paddingBottom">1px</property>
+            <property name="paddingRight">1pt</property>
+        </style>
+        <style name="title_style" id="365">
+            <property name="fontFamily">"arial"</property>
+            <property name="fontSize">larger</property>
+            <property name="fontWeight">bold</property>
+            <property name="color">#FFFFFF</property>
+            <property name="paddingTop">5pt</property>
+            <property name="paddingRight">5pt</property>
+            <property name="textAlign">right</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date().toLocaleString()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="889">
+            <column id="890"/>
+            <row id="891">
+                <property name="style">logo_grid</property>
+                <property name="height">1.1145833333333333in</property>
+                <cell id="892">
+                    <grid id="1036">
+                        <property name="height">1.0729166666666667in</property>
+                        <column id="1037">
+                            <property name="width">2.5729166666666665in</property>
+                        </column>
+                        <column id="1038">
+                            <property name="width">5.302083333333333in</property>
+                        </column>
+                        <row id="1039">
+                            <property name="style">logo_grid</property>
+                            <property name="height">1.0729166666666667in</property>
+                            <cell id="1040">
+                                <image id="1042">
+                                    <property name="style">logoimg</property>
+                                    <property name="height">80px</property>
+                                    <property name="width">226px</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">goapp-logo.png</property>
+                                </image>
+                            </cell>
+                            <cell id="1041">
+                                <text id="508">
+                                    <property name="style">title_style</property>
+                                    <property name="textAlign">right</property>
+                                    <structure name="toc"/>
+                                    <property name="contentType">html</property>
+                                    <text-property name="content"><![CDATA[<H2>
+Driver’s Total Share Details
+</H2>]]></text-property>
+                                </text>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="893">
+                <cell id="894"/>
+            </row>
+            <row id="895">
+                <cell id="896">
+                    <table id="834">
+                        <property name="style">table_style</property>
+                        <property name="dataSet">drivers_share_report</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">date_of_ride</property>
+                                <text-property name="displayName">date_of_ride</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["date_of_ride"]</expression>
+                                <property name="dataType">date</property>
+                            </structure>
+                            <structure>
+                                <property name="name">driver_name</property>
+                                <text-property name="displayName">driver_name</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["driver_name"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">car_no</property>
+                                <text-property name="displayName">car_no</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["car_no"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">driver_share</property>
+                                <text-property name="displayName">driver_share</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["driver_share"]</expression>
+                                <property name="dataType">float</property>
+                            </structure>
+                            <structure>
+                                <property name="name">franchise_share</property>
+                                <text-property name="displayName">franchise_share</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["franchise_share"]</expression>
+                                <property name="dataType">float</property>
+                            </structure>
+                            <structure>
+                                <property name="name">company_share</property>
+                                <text-property name="displayName">company_share</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["company_share"]</expression>
+                                <property name="dataType">float</property>
+                            </structure>
+                        </list-property>
+                        <structure name="toc"/>
+                        <column id="868">
+                            <property name="width">1.3958333333333333in</property>
+                        </column>
+                        <column id="869">
+                            <property name="width">1.2291666666666667in</property>
+                        </column>
+                        <column id="870">
+                            <property name="width">1.3854166666666667in</property>
+                        </column>
+                        <column id="872">
+                            <property name="width">1.2395833333333333in</property>
+                        </column>
+                        <column id="873"/>
+                        <column id="878"/>
+                        <header>
+                            <row id="835">
+                                <property name="style">table_th</property>
+                                <cell id="836">
+                                    <property name="style">table_th</property>
+                                    <label id="837">
+                                        <text-property name="text">Date of Ride</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="838">
+                                    <property name="style">table_th</property>
+                                    <label id="839">
+                                        <text-property name="text">Driver ID</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="840">
+                                    <property name="style">table_th</property>
+                                    <label id="841">
+                                        <text-property name="text">Vehicle Number</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="844">
+                                    <label id="845">
+                                        <property name="style">table_th</property>
+                                        <text-property name="text">Total share amount of the Driver</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="846">
+                                    <label id="847">
+                                        <property name="style">table_th</property>
+                                        <text-property name="text">Total share amount of the Company </text-property>
+                                    </label>
+                                </cell>
+                                <cell id="876">
+                                    <label id="879">
+                                        <property name="style">table_th</property>
+                                        <text-property name="text">Total Share amount of the Franchise</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="848">
+                                <cell id="849">
+                                    <data id="850">
+                                        <property name="style">table_td</property>
+                                        <property name="resultSetColumn">date_of_ride</property>
+                                    </data>
+                                </cell>
+                                <cell id="851">
+                                    <data id="852">
+                                        <property name="style">table_td</property>
+                                        <property name="resultSetColumn">driver_name</property>
+                                    </data>
+                                </cell>
+                                <cell id="853">
+                                    <data id="854">
+                                        <property name="style">table_td</property>
+                                        <property name="resultSetColumn">car_no</property>
+                                    </data>
+                                </cell>
+                                <cell id="857">
+                                    <data id="880">
+                                        <property name="style">table_td</property>
+                                        <property name="resultSetColumn">driver_share</property>
+                                    </data>
+                                </cell>
+                                <cell id="859">
+                                    <data id="882">
+                                        <property name="style">table_td</property>
+                                        <property name="resultSetColumn">company_share</property>
+                                    </data>
+                                </cell>
+                                <cell id="877">
+                                    <data id="881">
+                                        <property name="style">table_td</property>
+                                        <property name="resultSetColumn">franchise_share</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                    </table>
+                </cell>
+            </row>
+        </grid>
+    </body>
+    <list-property name="images">
+        <structure>
+            <property name="name">logo-new.png</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAAOIAAABQCAYAAAAEEqmpAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFn
+                ZVJlYWR5ccllPAAABfVJREFUeNrsnU1OG0kYQMsoUiRWzgmmc4IxJ7A5AfY2m5gTACcAn4BwAsyGLcwJ
+                MCfAOQE9JxivIrGb+vDnCBkHt931235PKjkLB1d/Va/rt6tbJiN+ffvcsR/tnPK8f/syMQBr+JSwcJK6
+                NhX673amMW5RzSAbEa18fftxZFM/Y+kA8hNRW74T5ANEjCNgz36c29SjCAACi4iAABFFtAJKt/PSpiEh
+                B4ggok7CXDMGBIggIq0gQGQRrYSF/bgz8/U/AAgtoi5JPNAV9UY7sRvc1KbZjsegdiw+IWE28kkXX9Zc
+                i0Qr4JVNY8+/s4hByj2trWLRQkK/7N++1I1xR7v5RQaXK5XwWD9d34gkBr2Mil5iMLCprPLlPSRMmkVc
+                i8zy67LFkmt/NvmtPUsMnqrGYg8Jk6XINK5tx/m+y7hutavmf6+mhPIDrBH64TzzCnjuaEyY+8y73FBP
+                vY4RrYhiex9nnI8RpSL/l/mly+zhl5p/4zmjbnmtWOzVkHCIhN5oQlzbNcd1RUMkXMSi41xEXbC/xBev
+                3Zkm0CMGv/lQxG3XES8ZF0ZnbNO/EX//LxN/++LEpscEyqJb4aZTOBVRH2WiSxqfG62IMVu72CKKhBcJ
+                lMVFzdZ/q67pNQ4AuGUjEXWCpiBsABFFNG7WhgBg2zGijg1TaQ1LTY8UIeyUiGa+6z22fDJBMd6/fSkp
+                Otg5EXUrW6yZUtmVMLLy/aC4YNdbxFgSTmwaWAlnFFVyyGM+hxV6MeBQxKMIeZMu6DFFlCwzE3cds1FU
+                nTXtIyFARBF1tjRodxQJARHfE1JE6e4MKBZAxPd0A+bnjIkZQMTVFIHyUloJxxQJIGJcEW8oDkDEFejB
+                UKGgNQRE/AOhHv4t2bYGiBifKUUBiPhnQnVNf1IUsMus2+KWxbk0dix7aRI9/9J2uQ8TDZscAtzz/Bsj
+                k8ZRFtmLmAsj4/6od4BkuqZZLK7rJoDjXPILsKmIoSZRug5kXDyWg4zQOBFDUThqGZER6JrWEdHV5oE3
+                MgI0Q0St1KH47nDMuHhhJkBjuqZloLwM9WwcVzKOkREQcXNEwlOXfxAZoUkihjw79ETfNOVaxhFF/Q4Z
+                R7dqJMbhgUWcBMzP66uOXXZRVcYLw9MdkLOIthJPAudJZk99vHvxiuKGnFtE4T5wvmTixlnLqEsjDxQ3
+                5C7iPxHyJkc4PtRZXxSRbZJu6ZPhxapAi1irm/okT1dsMokj39UnMp4Nb7CCDKj09IVsqrYV+97EO3pf
+                ljVObR7G2jpPlk970/NX5UTynuEpDGiiiMqVif/K7qEmEU92z8y0y4l4sBNd08XsaZlQ3ju0frBzIios
+                jAPEFlF3qZSEDSBuiyiwdxMgtog6VrwndABxW0ThzPAUPIAztjrFTU7l/vXts8h4TQijcRn5ZpjCTiV5
+                mLybQD6KKCKqjGMroyyg93EiCizbzAUoMsnr1EfXdMGx4bj84IWWEZMa/7dsWJmW3kTkPFGvFTj3mM4c
+                iDhtkIReW0SOMPRXiceZX8NVIn8jBdZuhGm5+qU3z/w1+XGjctMxib1RbRtjieNTRmOg5a61q5tziHd0
+                +I7FwbovOTtgeAdaxkVAQ21okDgOMoyn6+HKIOMuauUzdp2e9N1gGV+vS8bEgU+GW8Qzl4o40ZvV1LHY
+                EoPcNpFMNnHB+ZH7KuOBac5Ae2yv6eDt848qY6gbztuWONXKeK/xODR+ZjsXvYNDHTuneqOfLcWicj5b
+                vnKk583IovMwYwnPrHQ/6oyLa4wRYYfwXklsZZUF/2uT1yTO65H9VV45sE5GRIQoXdMVFVGa6q8mj+l4
+                6UqMtCs6rXh9LN9A+i3iUuvRM/PDnHopjgVVwnLLa1vZMtIiQnIiJipkLQHXyYiIkKyISxX3xMw3jocc
+                Q4p0N2Y+I1p6uKbfMiIiJC/iUgUWGY88SinCyXj1Ucetvm8wrzIiImQl4oqKLOlv/exsIefEzGc/f5r5
+                Oahl4Gso7MedTPxQzSBLEddU7uKj70R4ac5H+W0vH4QMsIr/BRgAREW9vMFOLwsAAAAASUVORK5CYII=
+</property>
+        </structure>
+        <structure>
+            <property name="name">goapp-logo.png</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAAOIAAABQCAYAAAAEEqmpAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFn
+                ZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/
+                IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6
+                bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8w
+                Mi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9y
+                Zy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIg
+                eG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDov
+                L25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20v
+                eGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9w
+                IENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6REY3ODkyQzZEMEU4MTFFNjg1
+                NzFENDM5NjhBMTAzNTgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6REY3ODkyQzdEMEU4MTFFNjg1
+                NzFENDM5NjhBMTAzNTgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlp
+                ZDpERjc4OTJDNEQwRTgxMUU2ODU3MUQ0Mzk2OEExMDM1OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRp
+                ZDpERjc4OTJDNUQwRTgxMUU2ODU3MUQ0Mzk2OEExMDM1OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9y
+                ZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlYge+AAAAWDSURBVHja7J2NceI4
+                FIAfzBbAVrBOBZdUEFNBSAUHFSRbQUIFbCqAVJBcBSEVwFYQroKjA85vkHcZFmLA+jXfN6PJzc0GnCd9
+                epIly63VaiUJcVmUjqTFVAAq+BKxcFqui5IlKmBJi2YGKYnYK8qN+dmhagAR/Wa+O+QDRAxDXpQH8xMA
+                EREQ4HxE1GHnqCh9Qg4QRkSd/42ZAwLsp+04C6qAL0gIECYjZkbAS0IMEEZEle+NLOh0pBFTBzcvyvLM
+                Y1A7Fl+QMBn5+rJec80ibYBPRZk4/p4yBjGPtE6KRcviXlMk3BNjC3F9iVTAXY1wYH7a7og0BnlC9a4x
+                uC3KwqeISOhGxBTjqkOzrkUZtQOaJdq2Do6FDRGR0I2IqTfAC0tzx5mkfdNPM+JVVSzqLl+USxRIaJ+H
+                hOPaMddvY06Y+p137VDvXWdEHbf3cMZ6RtSG/F/if7dmgK81P+Mjkblx7VjUyYh9JHRGE+KqnUleM5Nk
+                DanPyuWWdo0gjfDF6XCmCeTE4BefinjqOuKIeWFwJkX5N+D3f5Pwm/inRXmPoC6uD+h0Mtsi5gxJo+BZ
+                wp6Hk0cgokr4GEFdPNbM/icNTcc4AGCXY0XsN3DsDpCciA+EDMA+x8wR84iy4cKUd6oQzk3Euwjk0xsU
+                EzlwIy1A00TUpYpQd0p1V8KwKD+oLjh3EUNJOJX1oyRLqio69ImC7gGjGLAo4k2Aa9Mh6IAqipal8F4P
+                axx617SHhABhRcwDDEeREBAxoIhLMycEQMQtrj1ez3fhxgwg4k4yT9eyEPengAEgYgXPVAcg4m58nhdC
+                NgRE3IOvh38XwuIvIGJw5lQFIGL4oelPqgLOmaotbqmcSzOSeM+/7EZ6XXoodO74O3Sz/iOa1RcxFYam
+                YfEaOGjk0DSVxXW9zoGwGQAaKqKvmyg2du+Uj+UgIzRORF9klj4HGYGhaU0RLy3LCMDQ9AT+tvhZ5Qsz
+                ARozNF14upa+2F0umSAjIOLxqIT3lj8TGaExIvo8O/RO7D/toTIOqeo/0Hl0q0ZhHu5ZxKnH69Gs+CL2
+                d/Q8Ck93ACIehd49dfHuxSeqG1IWUXn1fF19y5lR5X6juiF1Ef8JcG09qb9/tGOGpTPhxapARqyVyWZm
+                qJod8XuZ+Z0P4Q1W0CARlwFlVO6NVGOTKXdlt9zINzP/9p4sCKlwzGNQTxL+ld19+f266LnpIDrC409w
+                RiJOZb24n0Vy7cgHZzc0LWFhHCACESfCaWsAwUVU2LsJEIGIOld8JXQAYUVUeFkMgEVOPcVtYWQcE8Jg
+                jAJ3hjGs0erD5NcRXEcWSkRlIutXevdwIggs36wFyBK51rmLoWnJQDgu33ulJcS0xu8uGlann/49rdVq
+                ZaNnfhO2k+2N8YnDvo/EY6rD5q81P2PWkMyvEl64zIhl780RhvYb8STxv+Epks+IgcqNMDYy4jllxsUJ
+                c5LWid/VMRkhSzBONjtnH+/ocB2Lq6p/1I40+DEH1NeGBo3jbYLxtP36g9uE58wHn7HbdvTFywZK2N0Y
+                Mg48f28qDXFqOqu5ZbE1BqltIpke40LbUeO5kubc+ZuYv2e59f98dTibmTjWxvhq4tEVN3c7y9FB18Q+
+                1o5+uRWLg6/T5hxx1xxHF537CUuomxZ+1JwXtwQgoIgluuA/lrRu4pRH9h+S1atkREQIMjTdNWy5kDRu
+                x+tQYnjk0JrlG0giI26Sy/owpzzSueCwxhxnX2YkI0J0IsYoZF0Bq2RERIhWxM2Geyf7T2ZzhUr3LG5O
+                HNiWEREhehE3URlvHEq5MPPVd3G/DLApIyJCUiJuN2Qtf23897FyTmV9I+Wn/D6BzieZrF8bcEUzg1RF
+                /KxxZwcIGAvaeXA3FSr5X4ABAJQvL3bEeb2AAAAAAElFTkSuQmCC
+</property>
+        </structure>
+    </list-property>
+</report>

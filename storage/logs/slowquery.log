@@ -1,0 +1,5 @@
+# Time: 170126 19:43:02
+# User@Host: root[root] @ localhost []  Id: 755297
+# Query_time: 8.000261  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1485459782;
+select sleep(8);
